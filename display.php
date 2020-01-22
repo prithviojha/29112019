@@ -12,6 +12,7 @@ include 'connection.php';
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   </head>
  <body>
+  <center>
     <table class="table">
       <thead class="thead-dark">
       <tr>
@@ -50,9 +51,9 @@ include 'connection.php';
                   ?>
                      
                  <td>
-                  <!-- <?php echo $row['filename'];?> -->
+                  
 
-             <a href="http://localhost:81/CRUD_29_09_2019/images/<?php echo $row['filename'];?>">download!</a>
+             <a href="http://localhost:81/19012020/images/<?php echo $row['filename'];?>">download!</a>
 
                          <a  href="removefile.php?id=<?php echo $row['id'];?>" id="removefiles">Remove File</a>
 
@@ -74,7 +75,10 @@ include 'connection.php';
           
           
             <td><a  class="btn btn-primary" href="edit.php?id=<?php echo $row['id'];?>">edit</a>
-            <a class="btn btn-danger" href="delete.php?id=<?php echo $row['id'];?>">delete</a></td>
+          
+          <a class="btn btn-danger" href="delete.php?id=<?php echo $row['id'];?>">delete</a>
+
+          </td>
             <?php
             }
             ?>
@@ -89,6 +93,15 @@ include 'connection.php';
          ?>        
        
       </table>
+    <button type="button" class="btn btn-danger" id="logout">logout</button>
+</center>
   </body>
   </html>
+  <script type="text/javascript">
+  $('#logout').click(function()
+  {
+  window.location.href = "login.php";
+    
+  });
+  </script>
 

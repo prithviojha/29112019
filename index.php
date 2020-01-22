@@ -1,3 +1,34 @@
+<?php
+include 'connection.php';
+if(isset($_POST['login']))
+{
+  $username=$_POST['name'];
+  $password=base64_encode(($_POST['psw']));
+
+  session_start();
+  $_SESSION['username']=$username;
+  $_SESSION['password']=$password;
+  if(isset($_POST['remember']))
+{
+  setcookie('username',$username,time()+(60*60*60*7));
+  setcookie('password',$password,time()+(60*60*60*7));
+  // echo "username_cookie:-".$_COOKIE['username'];
+  // echo "password_cookie:-".$_COOKIE['password'];
+} 
+  if($username=='' || $password=='')
+  {
+    header('location:login.php');
+  }
+  else
+  {
+    $sql="INSERT INTO `login_details`( `username`, `password`) VALUES ('.$username.','.$password.')";
+    $res=mysqli_query($conn,$sql);
+   
+  }
+
+}
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +57,8 @@
       <level class="btn btn-default">Enter your name:</level><input class="btn btn-default" type="text" name="name" id="full_name" placeholder="Enter your name">     
        <span style="display: none;" class="hid_name text-danger">*full name is required </span>
 <br><br>
-      <level class="btn btn-default">Enter your email:</level><input class="btn btn-default-lg" type="email" name="email" id="your_email" placeholder="Enter your email" required=""><br><br>
+
+      <level class="btn btn-default">Enter your email:</level><input class="btn btn-default-lg" type="email" name="email" id="your_email" placeholder="Enter your email" required="" value="<?php echo $_SESSION['username'];?>" readonly><br><br>
 <!--       <div class="row">
  -->   <level class="btn btn-default">select your gender:</level>
       <input class="btn btn-default" type="radio" name="gender" value="male" checked="">male

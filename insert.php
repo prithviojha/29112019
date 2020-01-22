@@ -4,7 +4,7 @@ include 'connection.php';
  if(isset($_POST['done']))
  {
  	 
- 	
+ 	    // phpinfo();
       // print_r($_FILES);
       // die();
       // echo "<br>";
@@ -19,7 +19,7 @@ include 'connection.php';
       $vechicle=$_POST['vechicle'];
       $vechicle_all=(implode(" and ", $vechicle));
       $files=$_FILES['image'];
-      $filename=rand(0,999).$files['name'];
+      $filename=rand(0,999).trim(strtolower($files['name']));
       $type=$files['type'];
 
       $tmpname=$files['tmp_name'];
@@ -55,7 +55,7 @@ include 'connection.php';
         window.onload=function()
         {
           alert("data inserted sucessfully");
-          window.location.href = "http://localhost:81/CRUD_29_09_2019/display.php";
+          window.location.href = "display.php";
         }
         </script>';
 
@@ -70,7 +70,7 @@ include 'connection.php';
           
         }
         </script>';
-        header("Location: http://localhost:81/CRUD_29_09_2019/insert.php"); 
+        header("Location:insert.php"); 
       }
 
 

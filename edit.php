@@ -10,7 +10,7 @@ $que=mysqli_query($conn,$q);
 
 while($row=mysqli_fetch_assoc($que))
 {
-  // print_r($row);
+   // print_r($row);
   // die();
  ?>
  <!DOCTYPE html>
@@ -36,10 +36,11 @@ while($row=mysqli_fetch_assoc($que))
     <div class="text-center">
     
      <h1><input class="btn btn-default btn-block disabled" value="Fill Up The Following Details" readonly=""></h1><br>
-      <level class="btn btn-default">Enter your name:</level><input class="btn btn-default" type="text" name="name" id="full_name" placeholder="Enter your name">     
+      <level class="btn btn-default">Enter your name:</level><input class="btn btn-default" type="text" name="name" id="full_name" placeholder="Enter your name" value="<?php echo $row['name']?>">      
        <span style="display: none;" class="hid_name text-danger">*full name is required </span>
 <br><br>
-      <level class="btn btn-default">Enter your email:</level><input class="btn btn-default-lg" type="email" name="email" id="your_email" placeholder="Enter your email" required=""><br><br>
+
+      <level class="btn btn-default">Enter your email:</level><input class="btn btn-default-lg" type="email" name="email" id="your_email" placeholder="Enter your email" required="" value="<?php echo $row['email']?>"><br><br>
 <!--       <div class="row">
  -->   <level class="btn btn-default">select your gender:</level>
       <input class="btn btn-default" type="radio" name="gender" value="male" checked="">male
